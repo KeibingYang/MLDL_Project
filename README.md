@@ -5,9 +5,26 @@ In this project, we explored the related work of DocVQA and fine-tuned it on Doc
 
 One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 
-A classic example of the DocVQA can 
+A classic example of the DocVQA just like the following picture and the demo of this project and see the video.
 
-![Example DocVQA](figures/Florence_model_pipeline.png)
+![Example DocVQA](figures/DocVQA-demo.mp4)
+
+<video src="Submission/demo.mp4" controls width="600"></video>
+
+# Table of Contents
+
+- [1. Overview](#1-overview)
+- [2. Environment](#2-environment)
+- [3. Dataset](#3-dataset)
+- [4. Model](#4-model)
+- [5. Usage](#5-usage)
+  - [5.1 Install](#51-install)
+  - [5.2 Quick Start](#52-quick-start)
+- [6. Results](#6-results)
+  - [6.1 Fine-tuning Curve (Frozen Visual Encoder)](#61-fine-tuning-curve-frozen-visual-encoder)
+  - [6.2 Freezing Ratio Ablation (Epoch 8)](#62-freezing-ratio-ablation-epoch-8)
+- [7. Limitations](#7-limitations)
+- [8. Paper](#8-paper)
 
 # 1. Overview  
 
@@ -76,9 +93,8 @@ There are some exapmle outputs like train_log_all_frozen_config.json, train_log_
 | 7 | **45.80** | 0.5791 | 42.29 | 51.06 | **57.25** |
 | 8 | 45.60 | **0.5816** | **42.40** | **51.13** | **57.25** |
 
-<p align="center">
-  <img src="figures/epoch_progress.pdf" width="820">
-</p>
+The result of the unfrozen visual tower can be drew as follow.
+![Florence model pipeline](figures/Florence_model_pipeline.jpg)
 
 ## 6.2 Freezing ratio ablation (epoch 8)
 
