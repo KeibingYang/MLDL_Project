@@ -1,4 +1,4 @@
-# MLDL_Project - **DocFloQA-FreezeTune**
+#b**DocFloQA-FreezeTune**
 This repository belongs to Kaibing Yang and focuses on fine-tuning multimodal models to adapt to specific tasks. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
 
 In this project, we explored the related work of DocVQA and fine-tuned it on DocVQA2020 based on Florence-2 with satisfactory results
