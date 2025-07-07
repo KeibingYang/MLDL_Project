@@ -5,12 +5,12 @@ In this project, we explored the related work of DocVQA and fine-tuned it on Doc
 
 One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 
-A classic example of the DocVQA just like the following picture and the demo of this project and see the video.
+A classic example of the DocVQA just like the following picture.
 
-![Example DocVQA](figures/DocVQA-demo.mp4)
+![Example DocVQA](figures/VQA_Example.png)
 
-<video src="Submission/demo.mp4" controls width="600"></video>
-
+This is the demo of this project. You can upload any picture and ask the model a question in English.
+![Demo](Submission/DocVQA-demo.gif)
 # Table of Contents
 
 - [1. Overview](#1-overview)
