@@ -1,5 +1,5 @@
 # MLDL_Project - **DocFloQA-FreezeTune**
-The repository is the project belonged to Kaibing Yang and its theme is about finetuning the multimodal model to adpat specific task. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
+This repository belongs to Kaibing Yang and focuses on fine-tuning multimodal models to adapt to specific tasks. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
 
 In this project, we explored the related work of DocVQA and fine-tuned it on DocVQA2020 based on Florence-2 with satisfactory results
 
@@ -11,12 +11,13 @@ One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 solve DocVQA without any task-specific layers.  We  
 
 * prepend a single task prefix `<DocVQA>` to every question;  
-* freeze (or partially unfreeze) the DaViT visual encoder, tuning only
-  the decoder head;  
+* freeze (or selectively unfreeze) the Florence-2 visual encoder while fine-tuning the    language decoder;
 * analyse four freezing ratios **0 / 33 / 66 / 100 %**.
 
+![模型流程图](figures/Florence_model_pipeline.pdf)
+
 <p align="center">
-  <img src="figures\Florence_model_pipeline.pdf" width="820">
+  <img src="figures/Florence_model_pipeline.pdf" width="820">
 </p>
 
 # 2. Environment  
@@ -28,23 +29,22 @@ solve DocVQA without any task-specific layers.  We
 | CUDA      | 11.8 / 12.x | 1 × A100 (40 GB) / H100 (80 GB) |
 | Transformers | ≥ 4.41 | `pip install transformers` |
 | Datasets  | ≥ 2.19 | `pip install datasets` |
-| seaborn / pandas | plotting |
+| seaborn | ≥ 0.11 | `pip install seaborn` |
+| pandas | ≥ 1.3 | `pip install pandas` |
 
 # 3. Dataset
-For the fine-tuned dataset, we mainly used the DocVQA2020 dataset(https://huggingface.co/datasets/lmms-lab/DocVQA)
+For the fine-tuned dataset, we mainly used the DocVQA2020 dataset([link](https://huggingface.co/datasets/lmms-lab/DocVQA))
 
-The dataset is also available through the Baidu Disk ()
-
-# 4.Model
-For model selection, we chose the Florence-2 model due to the consideration of computational resources(https://huggingface.co/microsoft/Florence-2-base-ft/tree/main)
-
-The dataset is also availabel throught the Baidu Disk()
+# 4. Model
+For model selection, we chose the Florence-2 model due to the consideration of computational resources([link](https://huggingface.co/microsoft/Florence-2-base-ft/tree/main))
 
 # 5. Usage  
 
 ## 5.1 Install 
 git clone https://github.com/KeibingYang/MLDL_Project.git
+
 cd MLDL_Project
+
 pip install -r requirements.txt
 
 ## Quick Start
@@ -63,7 +63,7 @@ There are some exapmle outputs like train_log_all_frozen_config.json, train_log_
 
 | epoch | accuracy % | EM % | F1 % | val loss |
 |------:|-----------:|-----:|-----:|---------:|
-| 0 | 15.20 | 0.2437 | -    |   -  |     -    |
+| 0 | 15.20 | 0.2437 | - | - | - |
 | 1 | 36.20 | 0.5014 | 36.32 | 44.60 | 62.37 |
 | 2 | 38.00 | 0.5164 | 38.83 | 47.37 | 59.66 |
 | 3 | 40.20 | 0.5264 | 40.12 | 48.87 | 58.11 |
@@ -96,10 +96,19 @@ Vector PDFs saved to `figures/`.
 
 # 7. Limitations  
 
-* Validation split = 500 samples → wide CI.  
-* EM/F1 still behind latest specialised models.  
-* Robustness to severe OCR noise needs work
-* 
+* Limited validation set: Evaluation conducted on only 500 samples → wide confidence intervals.
 
-# 8.Paper
-Related results can be found in Final/3022234232-杨凯冰-机器学习和深度学习-课程报告.pdf
+* Empirical freezing ratios: 0%/33%/66%/100% chosen intuitively rather than systematically optimized.
+
+* Insufficient hyperparameter search: Limited exploration of learning rates, batch sizes, and training schedules.
+
+* Noise robustness: Reduced performance on documents with OCR errors or image artifacts under frozen strategies.
+
+* Domain generalization: Evaluation limited to DocVQA2020; cross-dataset performance unknown.
+
+* Short training cycles: 0-8 epochs may not capture full convergence potential.
+
+* Baseline comparisons: Missing comparisons with LoRA, adapters, and other PEFT methods.
+
+# 8. Paper
+Related results can be found in Submission/3022234232-杨凯冰-机器学习和深度学习-课程报告.pdf

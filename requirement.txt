@@ -1,0 +1,41 @@
+# Core ML frameworks
+torch>=2.1.0
+torchvision>=0.16.0
+transformers>=4.41.0
+datasets>=2.19.0
+
+# Computer vision & image processing
+Pillow>=9.5.0
+opencv-python>=4.8.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Data manipulation & analysis
+pandas>=2.0.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Text similarity & evaluation
+rapidfuzz>=3.1.0
+evaluate>=0.4.0
+
+# Progress bars & logging
+tqdm>=4.65.0
+
+# Configuration & utilities
+PyYAML>=6.0
+pathlib2>=2.3.7
+
+# HuggingFace Hub integration
+huggingface-hub>=0.16.0
+
+# Additional utilities
+einops>=0.6.0
+timm>=0.9.0
+
+# For better tokenization
+tokenizers>=0.13.0
