@@ -694,9 +694,11 @@ def run_all_training_stages(train_loader, val_loader, model, processor, device, 
     Returns:
         dict: 所有阶段的结果汇总
     """
-    # 定义四个冻结层次
-    freezing_levels = [0, 0.33, 0.66, 1.0]
-    stage_names = ["all_frozen", "one_third_unfrozen", "two_thirds_unfrozen", "all_unfrozen"]
+    import config
+    
+    # 从配置文件读取冻结层次
+    freezing_levels = config.FREEZING_LEVELS
+    stage_names = config.STAGE_NAMES
 
     results = {}
     overall_start_time = time.time()
@@ -711,11 +713,11 @@ def run_all_training_stages(train_loader, val_loader, model, processor, device, 
         stage_start_time = time.time()
         
         print(f"\n{'='*80}")
-        print(f"🎯 Stage {stage_idx + 1}/4: {stage} (Vision Trainable: {ratio:.0%})")
+        print(f"🎯 Stage {stage_idx + 1}/{len(stage_names)}: {stage} (Vision Trainable: {ratio:.0%})")
         print(f"{'='*80}")
         
         # 训练阶段
-        log_file = f"train_log_{stage}.txt"
+        log_file = f"{config.LOG_PREFIX}_{stage}.txt"
         train_model_with_logging(
             train_loader=train_loader,
             val_loader=val_loader,
@@ -730,7 +732,7 @@ def run_all_training_stages(train_loader, val_loader, model, processor, device, 
         )
         
         # 可视化和评估阶段
-        save_dir = f"./visualization_{stage}"
+        save_dir = f"./{config.VISUALIZATION_PREFIX}_{stage}"
         acc, sim = visualize_and_log(
             dataset=val_loader.dataset,
             model=model,
@@ -775,15 +777,14 @@ def run_all_training_stages(train_loader, val_loader, model, processor, device, 
     }
     
     # 保存最终结果
-    final_results_path = "final_results_all_stages.json"
-    with open(final_results_path, 'w', encoding='utf-8') as f:
+    with open(config.RESULTS_FILE, 'w', encoding='utf-8') as f:
         json.dump(final_results, f, indent=2, ensure_ascii=False)
     
     # 创建对比图表
-    create_comparison_charts(results, "./")
+    create_comparison_charts(results, config.OUTPUT_DIR)
     
     print(f"\n🎉 All training stages completed in {total_time:.2f}s")
-    print(f"📊 Results saved to: {final_results_path}")
+    print(f"📊 Results saved to: {config.RESULTS_FILE}")
     
     return results
 
