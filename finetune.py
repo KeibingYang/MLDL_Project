@@ -880,38 +880,42 @@ class DocVQADataset(Dataset):
 
 # ========== 主程序入口 ==========
 if __name__ == "__main__":
+    import config
+    
     print("🚀 Starting Florence DocVQA Multi-Stage Fine-tuning Pipeline")
     print("=" * 80)
     
-    # ========== 配置参数 ==========
-    model_path = "/seu_nvme/home/fenglei/213240634/Florence/Model/Florence"
-    dataset_path = "/seu_nvme/home/fenglei/213240634/Florence/dataset_20250615144366/dataset"
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")  # 使用cuda:0
+    # ========== 从配置文件加载参数 ==========
+    model_path = config.MODEL_PATH
+    dataset_path = config.DATASET_PATH
+    device = torch.device(config.DEVICE if torch.cuda.is_available() else "cpu")
     
     # 训练超参数
-    batch_size = 6
-    epochs = 8  # 每个阶段的训练轮数
-    learning_rate = 1e-6
-    num_samples_visualize = 100  # 可视化样本数量
+    batch_size = config.BATCH_SIZE
+    epochs = config.EPOCHS
+    learning_rate = config.LEARNING_RATE
+    num_samples_visualize = config.NUM_SAMPLES_VISUALIZE
     
     print(f"📱 Device: {device}")
     print(f"📊 Batch size: {batch_size}")
     print(f"🔄 Epochs per stage: {epochs}")
     print(f"📚 Learning rate: {learning_rate}")
     print(f"🎨 Visualization samples: {num_samples_visualize}")
+    print(f"📂 Model path: {model_path}")
+    print(f"📂 Dataset path: {dataset_path}")
     
     # ========== 加载模型和处理器 ==========
     print("\n📥 Loading model and processor...")
     try:
         processor = AutoProcessor.from_pretrained(
             model_path, 
-            trust_remote_code=True, 
-            revision='refs/pr/6'
+            trust_remote_code=config.TRUST_REMOTE_CODE, 
+            revision=config.MODEL_REVISION
         )
         model = AutoModelForCausalLM.from_pretrained(
             model_path, 
-            trust_remote_code=True, 
-            revision='refs/pr/6'
+            trust_remote_code=config.TRUST_REMOTE_CODE, 
+            revision=config.MODEL_REVISION
         ).to(device)
         print("✅ Model and processor loaded successfully")
     except Exception as e:
@@ -947,15 +951,15 @@ if __name__ == "__main__":
         train_dataset,
         batch_size=batch_size,
         collate_fn=collate_fn,
-        shuffle=True,
-        num_workers=0,
+        shuffle=config.SHUFFLE_TRAIN,
+        num_workers=config.NUM_WORKERS,
     )
     
     val_loader = DataLoader(
         val_dataset,
         batch_size=batch_size,
         collate_fn=collate_fn,
-        num_workers=0,
+        num_workers=config.NUM_WORKERS,
     )
     
     print(f"✅ Data loaders created")
@@ -1005,3 +1009,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         exit(1)
+
