@@ -1,13 +1,13 @@
-# MLDL_Project
+# MLDL_Project - **DocFloQA-FreezeTune**
 The repository is the project belonged to Kaibing Yang and its theme is about finetuning the multimodal model to adpat specific task. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
 
 In this project, we explored the related work of DocVQA and fine-tuned it on DocVQA2020 based on Florence-2 with satisfactory results
 
-One prefix token + 0.8 % tunable params ⇨ near-SOTA DocVQA.
+One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 
 # 1. Overview  
 
-DocFloQA-FreezeTune shows that a large-scale vision–language model can
+**DocFloQA-FreezeTune** shows that a large-scale vision–language model can
 solve DocVQA without any task-specific layers.  We  
 
 * prepend a single task prefix `<DocVQA>` to every question;  
@@ -16,7 +16,7 @@ solve DocVQA without any task-specific layers.  We
 * analyse four freezing ratios **0 / 33 / 66 / 100 %**.
 
 <p align="center">
-  <img src="figures/Florence_model_ipeline.pdf" width="820">
+  <img src="figures\Florence_model_pipeline.pdf" width="820">
 </p>
 
 # 2. Environment  
