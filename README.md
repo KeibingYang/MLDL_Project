@@ -9,7 +9,7 @@ A classic example of the DocVQA just like the following picture.
 
 ![Example DocVQA](figures/VQA_Example.png)
 
-This is the demo of this project. You can upload any picture and ask the model a question in English.
+This is the demo of this project. You can upload any picture and ask the model a question in English. However, the length of the demo is restricted in the Github and if you are interested in the whole video and result, you can watch the video in the "Submission/DocVQA-demo.mp4" for more specific information.
 ![Demo](Submission/DocVQA-demo.gif)
 # Table of Contents
 
