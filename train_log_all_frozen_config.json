@@ -1,0 +1,26 @@
+{
+    "timestamp": "2025-07-06T18:19:35.942097",
+    "stage_name": "all_frozen",
+    "vision_trainable_ratio": 0,
+    "learning_rate": 1e-06,
+    "epochs": 8,
+    "batch_size": 6,
+    "device": "cuda:0",
+    "params_info": {
+      "total_params": 270803968,
+      "trainable_params": 180435968,
+      "frozen_params": 90368000,
+      "trainable_ratio": 0.66629735647005,
+      "vision_params": 90368000,
+      "vision_trainable": 0,
+      "vision_trainable_ratio": 0.0,
+      "language_params": 180435968,
+      "language_trainable": 180435968,
+      "language_trainable_ratio": 1.0
+    },
+    "vision_info": {
+      "total_vision_params": 400,
+      "unfrozen_vision_params": 0,
+      "vision_trainable_ratio": 0
+    }
+  }
