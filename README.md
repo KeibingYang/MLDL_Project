@@ -1,5 +1,5 @@
 # MLDL_Project - **DocFloQA-FreezeTune**
-The repository is the project belonged to Kaibing Yang and its theme is about finetuning the multimodal model to adpat specific task. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
+This repository belongs to Kaibing Yang and focuses on fine-tuning multimodal models to adapt to specific tasks. Specically, the project finetunes the Florence-2 modle to better address the DocVQA problem.
 
 In this project, we explored the related work of DocVQA and fine-tuned it on DocVQA2020 based on Florence-2 with satisfactory results
 
@@ -11,12 +11,11 @@ One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 solve DocVQA without any task-specific layers.  We  
 
 * prepend a single task prefix `<DocVQA>` to every question;  
-* freeze (or partially unfreeze) the DaViT visual encoder, tuning only
-  the decoder head;  
+* freeze (or selectively unfreeze) the Florence-2 visual encoder while fine-tuning the    language decoder;
 * analyse four freezing ratios **0 / 33 / 66 / 100 %**.
 
 <p align="center">
-  <img src="figures\Florence_model_pipeline.pdf" width="820">
+  <img src="figures/Florence_model_pipeline.pdf" width="820">
 </p>
 
 # 2. Environment  
@@ -28,23 +27,22 @@ solve DocVQA without any task-specific layers.  We
 | CUDA      | 11.8 / 12.x | 1 × A100 (40 GB) / H100 (80 GB) |
 | Transformers | ≥ 4.41 | `pip install transformers` |
 | Datasets  | ≥ 2.19 | `pip install datasets` |
-| seaborn / pandas | plotting |
+| seaborn | ≥ 0.11 | `pip install seaborn` |
+| pandas | ≥ 1.3 | `pip install pandas` |
 
 # 3. Dataset
-For the fine-tuned dataset, we mainly used the DocVQA2020 dataset(https://huggingface.co/datasets/lmms-lab/DocVQA)
+For the fine-tuned dataset, we mainly used the DocVQA2020 dataset([link](https://huggingface.co/datasets/lmms-lab/DocVQA))
 
-The dataset is also available through the Baidu Disk ()
-
-# 4.Model
-For model selection, we chose the Florence-2 model due to the consideration of computational resources(https://huggingface.co/microsoft/Florence-2-base-ft/tree/main)
-
-The dataset is also availabel throught the Baidu Disk()
+# 4. Model
+For model selection, we chose the Florence-2 model due to the consideration of computational resources([link](https://huggingface.co/microsoft/Florence-2-base-ft/tree/main))
 
 # 5. Usage  
 
 ## 5.1 Install 
 git clone https://github.com/KeibingYang/MLDL_Project.git
+
 cd MLDL_Project
+
 pip install -r requirements.txt
 
 ## Quick Start
@@ -63,7 +61,7 @@ There are some exapmle outputs like train_log_all_frozen_config.json, train_log_
 
 | epoch | accuracy % | EM % | F1 % | val loss |
 |------:|-----------:|-----:|-----:|---------:|
-| 0 | 15.20 | 0.2437 | -    |   -  |     -    |
+| 0 | 15.20 | 0.2437 | - | - | - |
 | 1 | 36.20 | 0.5014 | 36.32 | 44.60 | 62.37 |
 | 2 | 38.00 | 0.5164 | 38.83 | 47.37 | 59.66 |
 | 3 | 40.20 | 0.5264 | 40.12 | 48.87 | 58.11 |
