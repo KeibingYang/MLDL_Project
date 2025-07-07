@@ -70,7 +70,7 @@ pip install -r requirements.txt
 ## Quick Start
 Once you download the dataset and model already, you can run the follow instruction to finetune the Florence-2.
 
-python finetune.py
+bash train.sh
 
 There are four visual trainable ratios in the  freezing_levels and you can change the ratio as you need to achieve your goals. 
 Once the code starts, it will train the given ration in the freezing_levels continuely and output the log and json in the given path.
