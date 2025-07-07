@@ -14,6 +14,8 @@ solve DocVQA without any task-specific layers.  We
 * freeze (or selectively unfreeze) the Florence-2 visual encoder while fine-tuning the    language decoder;
 * analyse four freezing ratios **0 / 33 / 66 / 100 %**.
 
+![模型流程图](figures/Florence_model_pipeline.pdf)
+
 <p align="center">
   <img src="figures/Florence_model_pipeline.pdf" width="820">
 </p>
@@ -94,10 +96,19 @@ Vector PDFs saved to `figures/`.
 
 # 7. Limitations  
 
-* Validation split = 500 samples → wide CI.  
-* EM/F1 still behind latest specialised models.  
-* Robustness to severe OCR noise needs work
-* 
+* Limited validation set: Evaluation conducted on only 500 samples → wide confidence intervals.
 
-# 8.Paper
-Related results can be found in Final/3022234232-杨凯冰-机器学习和深度学习-课程报告.pdf
+* Empirical freezing ratios: 0%/33%/66%/100% chosen intuitively rather than systematically optimized.
+
+* Insufficient hyperparameter search: Limited exploration of learning rates, batch sizes, and training schedules.
+
+* Noise robustness: Reduced performance on documents with OCR errors or image artifacts under frozen strategies.
+
+* Domain generalization: Evaluation limited to DocVQA2020; cross-dataset performance unknown.
+
+* Short training cycles: 0-8 epochs may not capture full convergence potential.
+
+* Baseline comparisons: Missing comparisons with LoRA, adapters, and other PEFT methods.
+
+# 8. Paper
+Related results can be found in Submission/3022234232-杨凯冰-机器学习和深度学习-课程报告.pdf
