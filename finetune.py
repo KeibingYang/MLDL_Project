@@ -13,8 +13,6 @@ Florence模型在DocVQA数据集上的多层次微调训练脚本
 - 验证集性能评估
 - 预测结果可视化
 - 统计指标计算
-
-符合科研规范，包含完整的实验记录和分析
 """
 
 from datasets import load_dataset
