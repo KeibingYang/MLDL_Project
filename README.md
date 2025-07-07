@@ -94,7 +94,7 @@ There are some exapmle outputs like train_log_all_frozen_config.json, train_log_
 | 8 | 45.60 | **0.5816** | **42.40** | **51.13** | **57.25** |
 
 The result of the unfrozen visual tower can be drew as follow.
-![Florence model pipeline](figures/Florence_model_pipeline.jpg)
+![epoch_progress](figures/epoch_progress.png)
 
 ## 6.2 Freezing ratio ablation (epoch 8)
 
