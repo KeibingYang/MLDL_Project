@@ -5,6 +5,10 @@ In this project, we explored the related work of DocVQA and fine-tuned it on Doc
 
 One prefix token + 80% tunable params ⇨ near-SOTA DocVQA.
 
+A classic example of the DocVQA can 
+
+![Example DocVQA](figures/Florence_model_pipeline.png)
+
 # 1. Overview  
 
 **DocFloQA-FreezeTune** shows that a large-scale vision–language model can
@@ -14,14 +18,6 @@ solve DocVQA without any task-specific layers.  We
 * freeze (or selectively unfreeze) the Florence-2 visual encoder while fine-tuning the    language decoder;
 * analyse four freezing ratios **0 / 33 / 66 / 100 %**.
 
-![系统架构图](figures/Florence_model_pipeline.png)
-
-<div align="center">
-  <img src="figures/Florence_model_pipeline.png" width="820">
-</div>
-
-The vector PDF is available in the under link.
-![模型流程图](figures/Florence_model_pipeline.pdf)
 # 2. Environment  
 
 | component | version | note |
@@ -40,6 +36,11 @@ For the fine-tuned dataset, we mainly used the DocVQA2020 dataset([link](https:/
 # 4. Model
 For model selection, we chose the Florence-2 model due to the consideration of computational resources([link](https://huggingface.co/microsoft/Florence-2-base-ft/tree/main))
 
+The model pipeline of the model is here.
+![Florence model pipeline](figures/Florence_model_pipeline.jpg)
+
+The vector PDF is available in the under link.
+![Florence model pipeline](figures/Florence_model_pipeline.pdf)
 # 5. Usage  
 
 ## 5.1 Install 
